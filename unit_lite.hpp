@@ -74,6 +74,10 @@ namespace unit_lite{\
 	using name##_tag;\
 	using name##_quantity;\
 
+#define UL_IMPORT_COMPOSED_UNIT(name)\
+	using name;\
+	using name##_quantity;\
+
 
 //use it in the namespace where you want to define your unit
 #define UL_COMPOSE_UNIT(name,formula)\
@@ -96,7 +100,7 @@ namespace unit_lite{\
 struct ME##_tag{\
   ME##_tag()=delete;\
   typedef BASE##_tag::base_tag base_tag;\
-  typedef std::ratio_multiply< std::ratio<R1,R2>, BASE##_tag::factor >factor;\
+  typedef std::ratio_multiply< std::ratio<R2,R1>, BASE##_tag::factor >factor;\
   static std::string str(){return print_str;}\
 };\
 \

@@ -72,7 +72,7 @@ namespace unit_lite{
 namespace impl{
 
 
-struct XXX_DEBUG{}; //todo remove me!!!
+//struct XXX_DEBUG{};
 
 template<typename Ratio>
 struct ratio_is_natural{

@@ -29,10 +29,10 @@
 
 
 
-		Quantity()=default;
+Quantity()=default;
 
-		value_t value;
-		static Quantity<unit_t,value_t> from_value(const value_t&v){return this_t(v);}
+value_t value;
+static Quantity<unit_t,value_t> from_value(const value_t&v){return this_t(v);}
 
 private:
 Quantity(const V&v):value(v){};
