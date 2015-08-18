@@ -247,14 +247,14 @@ unit_lite::Quantity<U1,V1> operator %(const unit_lite::Quantity<U1,V1> &a, const
 
 
 //++a
-template<  typename U1, typename V1,  typename U2, typename V2>
+template<  typename U1, typename V1>
 unit_lite::Quantity<U1,V1>& operator ++(unit_lite::Quantity<U1,V1> &a){
 	++a.value;
 	return a;
 }
 
 //--a
-template<  typename U1, typename V1,  typename U2, typename V2>
+template<  typename U1, typename V1>
 unit_lite::Quantity<U1,V1>& operator--(unit_lite::Quantity<U1,V1> &a){
 	--a.value;
 	return a;
@@ -264,16 +264,16 @@ unit_lite::Quantity<U1,V1>& operator--(unit_lite::Quantity<U1,V1> &a){
 
 
 
-//++a
-template<  typename U1, typename V1,  typename U2, typename V2>
+//a++
+template<  typename U1, typename V1>
 unit_lite::Quantity<U1,V1> operator ++(unit_lite::Quantity<U1,V1> &a,int){
 	auto r = a;
 	++a.value;
 	return r;
 }
 
-//--a
-template<  typename U1, typename V1,  typename U2, typename V2>
+//a--
+template<  typename U1, typename V1>
 unit_lite::Quantity<U1,V1> operator--(unit_lite::Quantity<U1,V1> &a, int){
 	auto r = a;
 	--a.value;
