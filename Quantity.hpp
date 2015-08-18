@@ -341,5 +341,17 @@ std::ostream & operator<<(std::ostream & out, const unit_lite::Quantity<T,U> &q)
 
 
 
+//to string
+namespace std{
+	template<typename T, typename U>
+	std::string to_string(const ::unit_lite::Quantity<T,U> &q){
+		typedef unit_lite::Quantity<T,U> quantity_t;
+		std::string r = std::to_string(q.value);
+		r += " ";
+		r += unit_lite::print_compose_unit<typename quantity_t::unit_t>::str();
+		return r;
+	}
+}
+
 
 #endif /* SRC_LIB_UNIT_LITE_QUANTITY_HPP_ */

@@ -115,7 +115,6 @@ typedef std::remove_const<decltype(ME)>::type ME##_quantity;\
 
 
 
-
 namespace unit_lite{
 	template<typename Tag_t> struct print_tag;
 }
@@ -527,15 +526,6 @@ auto pow(const unit_lite::Quantity<U1,V1> &t){
     double exp=(double)num/(double)den;
 	return unit_lite::Quantity<unit_t,decltype(pow(t.value,exp) )>::from_value(pow(t.value,exp));
 }
-
-
-
-
-
-
-
-
-
 
 
 
