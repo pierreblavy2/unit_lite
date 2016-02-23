@@ -51,7 +51,7 @@ struct numeric_limits<unit_lite::Quantity<T,U> >{
 	static constexpr decltype(std::numeric_limits<U>::round_style)  round_style = std::numeric_limits<U>::round_style;
 
 
-	static constexpr bool  is_ice559   = std::numeric_limits<U>::is_ice559;
+	//static constexpr bool  is_ice559   = std::numeric_limits<U>::is_ice559;
 	static constexpr bool  is_bounded  = std::numeric_limits<U>::is_bounded;
 	static constexpr bool  is_modulo   = std::numeric_limits<U>::is_modulo;
 

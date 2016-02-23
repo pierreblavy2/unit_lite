@@ -50,6 +50,7 @@ namespace unit_lite{
 		std::tuple<Ratios...>
 		>
 	{
+	public:
 		Compose_unit()=delete; //compile time class only (use in typedef OK, but don't create instances)
 
 
@@ -113,9 +114,9 @@ namespace unit_lite{
 
 
 	template<typename T, typename R>
-	class print_compose_unit< Compose_unit<T,R> >{
+	struct print_compose_unit< Compose_unit<T,R> >{
 
-
+	public :
 		typedef std::ratio<1,1> one;
 		typedef std::ratio<0,1> zero;
 		typedef Compose_unit<T,R> Compose_unit_t;
@@ -163,7 +164,7 @@ namespace unit_lite{
 			}
 		};
 
-		static constexpr std::string merge(const std::string &a, const std::string &b){
+		static std::string merge(const std::string &a, const std::string &b){
 			if(a==""){return b;}
 			if(b==""){return a;}
 			return a+"."+b;

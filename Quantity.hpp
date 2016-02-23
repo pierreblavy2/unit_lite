@@ -178,9 +178,11 @@ struct multiple_base_one<I, Compose_unit<T,R> >{
 
 	template<typename T> struct multiple_base;
 	template<typename T, typename R>
-	class multiple_base<Compose_unit<T,R> >{
+	struct multiple_base<Compose_unit<T,R> >{
+	    private:
 		typedef Compose_unit<T,R> CU;
 		typedef multiple_base_r<CU::size,CU> MBR;
+
 		public:
 		typedef typename MBR::factor factor;
 		typedef typename MBR::unit_t unit_t;
@@ -199,6 +201,7 @@ namespace unit_lite{
 
 	template<typename T, typename R, typename V>
 	struct Quantity<Compose_unit<T,R>,V>{
+		public:
 		typedef Quantity<Compose_unit<T,R>,V> this_t;
 		typedef Compose_unit<T,R> unit_t;
 		typedef V value_t;
@@ -207,62 +210,62 @@ namespace unit_lite{
 
 		static constexpr bool is_dimensionless=false;
 
-
 		//Convert to an other quantity
 		//This conversion require a dimension
 		template<typename T2,typename R2, typename V2>
-		void to(Quantity<Compose_unit<T2,R2>,V2> &write_here)const{
-
-			typedef unit_t              unit_t1;
-			typedef Compose_unit<T2,R2> unit_t2;
-
-			//No conversion between dimensionless
-			typedef Compose_unit<std::tuple<>,std::tuple<>> dimensionless;
-			static_assert(
-				! unit_lite::same_unit<dimensionless,unit_t1>::value,
-				"cannot convert (x.to) because the source class is dimensionless."
-			);
-
-			typedef Compose_unit<std::tuple<>,std::tuple<>> dimensionless;
-			static_assert(
-				! unit_lite::same_unit<dimensionless,unit_t2>::value,
-				"cannot convert (x.to) because the target class is dimensionless."
-			);
-
-
-
-
-
-
-			//[1] We want to convert mm/min into km/s
-			//    First we convert to base with multiple_base
-			//    mm/min    -->  r1=(1/1000)^1  * (60/1)^-1  , m/s
-			//    km/s      -->  r2=(1000/1)^1  * (1/1 )^-1  , m/s
-			typedef typename impl::multiple_base<unit_t1> UR1;
-			typedef typename impl::multiple_base<unit_t2> UR2;
-
-			//[2] Then we assert that multiple_base have the same units (m/s)
-			static_assert(
-					unit_lite::same_unit<
-					typename UR1::unit_t,
-					typename UR2::unit_t>::value,
-					"cannot convert (.to) between heterogeneous units."
-			);
-
-			//[3] Then we use their ratio to generate the conversion
-			//new_value = old_value * (r2/r1)
-			typedef typename std::ratio_divide<
-					typename UR2::factor ,
-					typename UR1::factor
-			>::type factor;
-
-			write_here.value = unit_lite::multiply_by_ratio<factor>(this->value);
-		}
+		void to(Quantity<Compose_unit<T2,R2>,V2> &write_here)const;
 
 		template<typename AA>
 		AA to()const{	AA r; this->to(r);return r;	}
 
 	};
+
+
+	template<typename T, typename R, typename V>
+	template<typename T2,typename R2, typename V2>
+	void Quantity<Compose_unit<T,R>,V>::to(Quantity<Compose_unit<T2,R2>,V2> &write_here)const{
+
+		typedef unit_t              unit_t1;
+		typedef Compose_unit<T2,R2> unit_t2;
+
+		//No conversion between dimensionless
+		typedef Compose_unit<std::tuple<>,std::tuple<>> dimensionless;
+		static_assert(
+			! unit_lite::same_unit<dimensionless,unit_t1>::value,
+			"cannot convert (x.to) because the source class is dimensionless."
+		);
+
+		typedef Compose_unit<std::tuple<>,std::tuple<>> dimensionless;
+		static_assert(
+			! unit_lite::same_unit<dimensionless,unit_t2>::value,
+			"cannot convert (x.to) because the target class is dimensionless."
+		);
+
+		//[1] We want to convert mm/min into km/s
+		//    First we convert to base with multiple_base
+		//    mm/min    -->  r1=(1/1000)^1  * (60/1)^-1  , m/s
+		//    km/s      -->  r2=(1000/1)^1  * (1/1 )^-1  , m/s
+		typedef typename impl::multiple_base<unit_t1> UR1;
+		typedef typename impl::multiple_base<unit_t2> UR2;
+
+		//[2] Then we assert that multiple_base have the same units (m/s)
+		static_assert(
+				unit_lite::same_unit<
+				typename UR1::unit_t,
+				typename UR2::unit_t>::value,
+				"cannot convert (.to) between heterogeneous units."
+		);
+
+		//[3] Then we use their ratio to generate the conversion
+		//new_value = old_value * (r2/r1)
+		typedef typename std::ratio_divide<
+				typename UR2::factor ,
+				typename UR1::factor
+		>::type factor;
+
+		write_here.value = unit_lite::multiply_by_ratio<factor>(this->value);
+	}
+
 
 
 	//dimensionless idem + auto cast to V

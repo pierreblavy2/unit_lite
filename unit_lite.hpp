@@ -60,6 +60,14 @@
 #define UL_DECLARE_UNIT_N(name,value_t)\
 	UL_DECLARE_UNIT(name,value_t,#name)
 
+
+//UL_DEFINE_VALUE : define a new variable of the right type
+// exemple : UL_DEFINE_VALUE(my_speed, 0.25, m/s)
+#define UL_DEFINE_VALUE(name,value,formula)\
+	std::remove_const<decltype(formula)>::type name=decltype(formula)::from_value(value);
+
+
+
 /*
 //use UL_PRINT_UNIT in global namespace
 #define UL_PRINT_UNIT(name,print)\
@@ -184,12 +192,13 @@ template<
 auto pow(const unit_lite::Quantity<U1,V1> &t);
 
 #include <cmath>
-template<typename U1,typename V1>
-bool  isnan( const unit_lite::Quantity<U1,V1> &a){
-	return isnan(a.value ) ;
+
+namespace std{
+	template<typename U1,typename V1>
+	bool  isnan( const unit_lite::Quantity<U1,V1> &a){
+		return std::isnan(a.value ) ;
+	}
 }
-
-
 
 
 
@@ -517,7 +526,7 @@ unit_lite::Quantity<U1,V1>& operator %=(unit_lite::Quantity<U1,V1> &a , const un
 
 template<
   std::intmax_t num,
-  std::intmax_t den=1,
+  std::intmax_t den,
   typename U1,typename V1
   >
 auto pow(const unit_lite::Quantity<U1,V1> &t){

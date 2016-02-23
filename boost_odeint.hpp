@@ -21,8 +21,10 @@
 #ifndef LIB_UNIT_LITE_ODEINT_HPP_
 #define LIB_UNIT_LITE_ODEINT_HPP_
 
+
 #include "Quantity.hpp"
 #include "limits.hpp"
+#include <unit_lite/unit_lite.hpp>
 
 
 namespace boost{

@@ -46,10 +46,11 @@ template<
    typename T1, typename R1, typename V1,
    typename T2, typename R2, typename V2
 >
-class same_unit<
+struct same_unit<
   Quantity< Compose_unit<T1,R1>,V1> ,
   Quantity< Compose_unit<T2,R2>,V2>
 >{
+private:
 	typedef unit_lite::Compose_unit<T1,R1> c1;
 	typedef unit_lite::Compose_unit<T2,R2> c2;
 	typedef unit_lite::impl::Compose_unit_add<c1,c2> checker_t;
@@ -62,10 +63,11 @@ public:
 
 //specialize same_unit for Compose_unit
 template<typename T1, typename R1, typename T2, typename R2>
-class same_unit<
+struct same_unit<
   Compose_unit<T1,R1> ,
   Compose_unit<T2,R2>
 >{
+private:
 	typedef unit_lite::Compose_unit<T1,R1> c1;
 	typedef unit_lite::Compose_unit<T2,R2> c2;
 	typedef unit_lite::impl::Compose_unit_add<c1,c2> checker_t;
@@ -86,10 +88,11 @@ struct same_unit<
 template<
   typename T1, typename R1,
   typename T2, typename R2,typename V2>
-class same_unit<
+struct same_unit<
   Compose_unit<T1,R1> ,
   Quantity< Compose_unit<T2,R2>,V2>
 >{
+	private:
 	typedef unit_lite::Compose_unit<T1,R1> c1;
 	typedef unit_lite::Compose_unit<T2,R2> c2;
 	typedef unit_lite::impl::Compose_unit_add<c1,c2> checker_t;
@@ -102,10 +105,11 @@ class same_unit<
 template<
   typename T1, typename R1,typename V1,
   typename T2, typename R2>
-class same_unit<
+struct same_unit<
   Quantity< Compose_unit<T1,R1>,V1> ,
   Compose_unit<T2,R2>
 >{
+	private:
 	typedef unit_lite::Compose_unit<T1,R1> c1;
 	typedef unit_lite::Compose_unit<T2,R2> c2;
 	typedef unit_lite::impl::Compose_unit_add<c1,c2> checker_t;
