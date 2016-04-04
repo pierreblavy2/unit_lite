@@ -1,4 +1,5 @@
 Unit lite is an alternative to boost units that handle compile-time checking of unit consistency, multiples of units and unit pretty print. This library is designed to be more user friendly than the boost one with easy to use syntax, faster compilation, and easier to read error messages. This library is published under the LGPL 3.0 license. 
 
 Documentation is available online at:
-https://tentacule.be/fossil/cpp-msmodels
+introduction : https://tentacule.be/fossil/cpp-msmodels/wiki?name=ul-introduction
+usage : https://tentacule.be/fossil/cpp-msmodels/wiki?name=ul-usage
