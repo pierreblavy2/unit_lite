@@ -3,7 +3,6 @@
 * Have zero run time overhead (but slower compilation)
 * Easily print numbers with their underlying unit
 * Handles explicit conversions between multiples of a unit, like meters to centimeters.
-* Requires c++14 support
 * ![LGPL](https://img.shields.io/github/license/pierreblavy2/unit_lite)
 ![C++14 required](https://img.shields.io/badge/c%2B%2B-%3E%3D14-green)
 
