@@ -1,17 +1,18 @@
-# Introduction
-
-Unit lite is an alternative to boost units that handle compile-time checking of unit consistency, multiples of units and unit pretty print. This library is designed to be more user friendly than the boost one with easy to use syntax, faster compilation, and easier to read error messages. 
-
-This library is published under the LGPL 3.0 license. 
-
-
-
 # Features 
 * Check at compile time unit consistency
 * Have zero run time overhead (but slower compilation)
 * Easily print numbers with their underlying unit
 * Handles explicit conversions between multiples of a unit, like meters to centimeters.
 * Require c++14 support
+
+
+
+# Introduction
+
+Unit lite is an alternative to boost units that handle compile-time checking of unit consistency, multiples of units and unit pretty print. This library is designed to be more user friendly than the boost one with easy to use syntax, faster compilation, and easier to read error messages. 
+
+This library is published under the LGPL 3.0 license. 
+
 
 
 
