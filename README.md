@@ -5,7 +5,7 @@
 * Handles explicit conversions between multiples of a unit, like meters to centimeters.
 * Requires c++14 support
 
-![License LGPL](https://shields.io//github/license/:user/:repo)
+![LGPL](https://img.shields.io/github/license/pierreblavy2/unit_lite)
 
 # Introduction
 
