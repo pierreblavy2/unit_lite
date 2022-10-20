@@ -3,7 +3,7 @@
 * Have zero run time overhead (but slower compilation)
 * Easily print numbers with their underlying unit
 * Handles explicit conversions between multiples of a unit, like meters to centimeters.
-* Require c++14 support
+* Requires c++14 support
 
 
 
